@@ -1,0 +1,76 @@
+<!-- index.html (colocar na raiz do repo do GitHub Pages) -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>EventPlus — Download</title>
+  <style>
+    :root{
+      --bg1:#0b1226; --bg2:#1652c3; --accent:#e91e63;
+      --card:#ffffff20; --glass:#ffffff10;
+      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#fff}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:40px}
+    .card{width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border-radius:18px;padding:36px; box-shadow:0 12px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px);}
+    .row{display:flex;gap:24px;align-items:center}
+    h1{margin:0;font-size:28px}
+    p.lead{margin:8px 0 18px;color:rgba(255,255,255,0.85)}
+    .download{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:600}
+    .muted{color:rgba(255,255,255,0.7);font-size:13px}
+    .apk-link{display:block;margin-top:18px;color:#fff;background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;text-decoration:none}
+    .steps{margin-top:18px;color:rgba(255,255,255,0.85);font-size:14px}
+    .logo{width:86px;height:86px;border-radius:18px;background:linear-gradient(135deg,#fff2 0%, #fff0 40%);display:flex;align-items:center;justify-content:center}
+    .logo svg{width:56px;height:56px;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.4))}
+    footer{margin-top:18px;color:rgba(255,255,255,0.65);font-size:12px}
+    @media(max-width:780px){.row{flex-direction:column;align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="row">
+        <div style="flex:1">
+          <h1>EventPlus</h1>
+          <p class="lead">Baixe o APK e comece a organizar eventos com estilo. Convites por link — fácil e rápido.</p>
+
+          <!-- Botão principal: link para o APK (substitua o href quando subir o apk) -->
+          <a id="downloadBtn" class="download" href="apk/EventPlus.apk" download>
+            <!-- ícone -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3v12" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 11l4 4 4-4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="3" y="18" width="18" height="3" rx="1.5" fill="#fff" opacity="0.12"/>
+            </svg>
+            Baixar APK
+          </a>
+
+          <div class="apk-link" id="apkInfo">Arquivo: <strong>apk/EventPlus.apk</strong> — faça o upload desse arquivo na pasta <code>apk/</code> do repositório.</div>
+
+          <div class="steps">
+            <p class="muted">Dica: para instalar no Android, ative <strong>Instalar apps de fontes desconhecidas</strong> nas configurações do dispositivo.</p>
+            <ol>
+              <li>Faça upload do arquivo <code>EventPlus.apk</code> na pasta <code>apk/</code> do repositório.</li>
+              <li>Published GitHub Pages (Settings → Pages → branch main) → você terá uma URL: <code>https://&lt;seu-usuario&gt;.github.io/&lt;repo&gt;/</code></li>
+              <li>Use essa URL como fallback nos Dynamic Links do Firebase.</li>
+            </ol>
+          </div>
+
+          <footer>EventPlus • Projeto Acadêmico</footer>
+        </div>
+
+        <div style="width:220px;text-align:center">
+          <div class="logo" aria-hidden="true">
+            <!-- marca simples -->
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="8" width="40" height="32" rx="8" fill="#fff" opacity="0.12"/>
+              <path d="M14 18h20v2H14zM14 24h20v2H14zM14 30h12v2H14z" fill="#fff" opacity="0.95"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
