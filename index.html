@@ -1,66 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EventPlus - Entrar no Evento</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #3b82f6);
-      color: white;
-      text-align: center;
-      padding: 40px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      padding: 30px;
-      margin-top: 40px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-    }
-    a.button {
-      display: block;
-      margin-top: 25px;
-      padding: 15px;
-      background: #e91e63;
-      border-radius: 12px;
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  </style>
-
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>EventPlus - Convite</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
 
-  <h1>🎉 EventPlus</h1>
-  <p>Obrigado por acessar seu convite!</p>
+<h1>EventPlus</h1>
+<p class="subtitle" id="subtitle">Carregando convite...</p>
 
-  <div class="card">
-    <h2>Abrir o App</h2>
+<div class="card">
 
-    
+    <p id="hostName" class="host"></p>
+
+    <div class="event-title" id="eventName">Carregando...</div>
+
+    <div class="info-line"><b>📅 Data:</b> <span id="eventDate"></span></div>
+    <div class="info-line"><b>📍 Local:</b> <span id="eventLocation"></span></div>
+
+    <div class="event-description" id="eventDescription"></div>
+
+    <div class="token-box">
+        Código de acesso:
+        <br>
+        <span id="token"></span>
+    </div>
+
+    <p class="instructions">
+        Para visualizar este evento no aplicativo:<br>
+        <b>Abra o EventPlus → Entre como Convidado → Digite o código acima.</b>
+    </p>
+
     <script>
-      const deepLink = "eventplus://invite?eventId=123"; 
-      window.location.href = deepLink;
+        const params = new URLSearchParams(window.location.search);
 
-      setTimeout(() => {
-        window.location.href = "https://github.com/ArianeSanga/eventplus-download/releases/download/v1.0/app-debug.apk";
-      }, 1800);
+        const token = params.get("token");
+        const eventId = params.get("eventId");
+        const eventName = params.get("eventName");
+        const eventDate = params.get("eventDate");
+        const eventLocation = params.get("eventLocation");
+        const eventDescription = params.get("eventDescription");
+        const hostName = params.get("hostName");
+
+        document.getElementById("hostName").innerText = hostName;
+
+        document.getElementById("eventName").innerText = eventName;
+
+        // Local
+        document.getElementById("eventLocation").innerText = eventLocation;
+
+        // Descrição
+        document.getElementById("eventDescription").innerText = eventDescription;
+
+        // Token
+        document.getElementById("token").innerText = token;
+
+        // Subtítulo
+        document.getElementById("subtitle").innerText =
+            `${hostName} está te convidando para: ${eventName}`;
+
+        // Converter data
+        const dateMillis = parseInt(eventDate);
+        if (!isNaN(dateMillis)) {
+            const d = new Date(dateMillis);
+            document.getElementById("eventDate").innerText =
+                d.toLocaleDateString("pt-BR") +
+                " às " +
+                d.toLocaleTimeString("pt-BR", { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Abrir app via deep link
+        const deepLink = `eventplus://invite?token=${token}&eventId=${eventId}`;
+        window.location.href = deepLink;
+
+        // Fallback para download
+        setTimeout(() => {
+            window.location.href = "https://github.com/ArianeSanga/eventplus-download/releases/download/v1.0/app-debug.apk";
+        }, 1800);
     </script>
 
-    <p>Se o app não abrir automaticamente, baixe abaixo:</p>
+    <p style="margin-top: 20px;">Se o app não abrir automaticamente, baixe abaixo:</p>
 
-    <a 
-      class="button" 
-      href="https://github.com/ArianeSanga/eventplus-download/releases/download/v1.0/app-debug.apk">
-      📥 Baixar EventPlus (APK)
+    <a class="button"
+       href="https://github.com/ArianeSanga/eventplus-download/releases/download/v1.0/app-debug.apk">
+        📥 Baixar EventPlus (APK)
     </a>
-  </div>
+
+</div>
 
 </body>
 </html>
