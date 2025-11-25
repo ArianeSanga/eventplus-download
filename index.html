@@ -44,9 +44,7 @@
         const eventDate = params.get("eventDate");
         const eventLocation = params.get("eventLocation");
         const eventDescription = params.get("eventDescription");
-        const hostName = params.get("hostName");
-
-        document.getElementById("hostName").innerText = hostName;
+        const hostName = decodeURIComponent(params.get("hostName") || "");
 
         document.getElementById("eventName").innerText = eventName;
 
@@ -59,9 +57,8 @@
         // Token
         document.getElementById("token").innerText = token;
 
-        // Subtítulo
         document.getElementById("subtitle").innerText =
-            `${hostName} está te convidando para: ${eventName}`;
+            `${hostName} está te convidando para o evento: ${eventName}`;
 
         // Converter data
         const dateMillis = parseInt(eventDate);
